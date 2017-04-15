@@ -26,16 +26,34 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/mdb.min.js" />"></script>
 
 	<title>タグログ - ツイッターで話題のお店が探せるグルメサイト</title>
+	
+	
 </head>
 <body>
-
+<nav class="navbar navbar-toggleable-md navbar-dark warning-color-dark">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="../">
+            <strong>タグログ</strong>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../">Home <!--<span class="sr-only">../(current)</span>--></a>
+                </li>
+            </ul>
+         </div>
+     </div>
+ </nav>  
 <div class="container">
 
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">タグからお店を選ぶ</h2>
     </div>
 	<div class="list-group">
-	    <a href="#" class="list-group-item disabled">Cras justo odio</a>
+	    <a href="../tag/kiyolog" class="list-group-item disabled">きよログ</a>
 	    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
 	    <a href="#" class="list-group-item">Morbi leo risus</a>
 	    <a href="#" class="list-group-item">Porta ac consectetur ac</a>

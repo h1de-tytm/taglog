@@ -21,6 +21,8 @@ public class Taglog {
 	
 	private String shopName;
 	
+	public Taglog() {}
+	
 	public Taglog(String tag, String location, String genre, String tweet, String tabelogUrl, String shopName) {
 		this(null, tag, location, genre, tweet, tabelogUrl, shopName);
 	}
