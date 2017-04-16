@@ -1,5 +1,7 @@
 package com.taglog.web;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,24 +37,42 @@ public class TaglogController {
 		System.out.println("/tag/{tag}" + tag + "is called");
 		List<Map<String, Object>> taglogMapList = taglogRepository.findByTag(tag);
 		List<Taglog> taglogList = new ArrayList<Taglog>();
+		
 		for (Map<String, Object> taglogMap : taglogMapList) {
 			
 			Taglog taglog = new Taglog();
-			taglog.setId((Long)taglogMap.get("id"));
+			taglog.setTaglogId((Long)taglogMap.get("taglogId"));
 			taglog.setTag((String)taglogMap.get("tag"));
-			taglog.setLocation((String)taglogMap.get("location"));
-			taglog.setGenre((String)taglogMap.get("genre"));
 			taglog.setTweet((String)taglogMap.get("tweet"));
-			taglog.setTabelogUrl((String)taglogMap.get("tabelogUrl"));
-			taglog.setShopName((String)taglogMap.get("shopName"));
+			taglog.setTweetId((Long)taglogMap.get("tweetId"));
+
 			taglogList.add(taglog);
 			
 		}
+				
+		//create tweetId list to eliminate duplicate.
+		List<Long> tweetIdList = new ArrayList<Long>();
+		List<Taglog> nonDuplicatedTaglogList = new ArrayList<Taglog>();
+		for (Taglog taglog : taglogList) {
+			Long tweetId = taglog.getTweetId();
+			boolean isDuplicated = false; // true: duplicate, false: not duplicate
+			for (Long exeistedTweetId : tweetIdList) {
+				if (tweetId.equals(exeistedTweetId)) {
+					isDuplicated = true;
+				}
+			}
+			if (!isDuplicated) {
+				tweetIdList.add(tweetId);
+				nonDuplicatedTaglogList.add(taglog);
+			}
+			
+		}
+		
 		
 		TagMapping tagMapping = new TagMapping();
 		String tagName = tagMapping.getTagName(tag);
 		model.addAttribute("tagName", tagName);
-		model.addAttribute("taglogList", taglogList);
+		model.addAttribute("taglogList", nonDuplicatedTaglogList);
 		return "taglog";
 	}
 }

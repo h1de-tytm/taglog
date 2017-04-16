@@ -3,46 +3,38 @@ package com.taglog;
 import javax.validation.constraints.NotNull;
 
 public class Taglog {
-	private Long id;
+	private Long taglogId;
 	
 	@NotNull
 	private String tag;
 	
 	@NotNull
-	private String location;
-	
-	@NotNull
 	private String tweet;
 	
 	@NotNull
-	private String genre;
+	private Long tweetId;
 	
-	private String tabelogUrl;
-	
-	private String shopName;
 	
 	public Taglog() {}
 	
-	public Taglog(String tag, String location, String genre, String tweet, String tabelogUrl, String shopName) {
-		this(null, tag, location, genre, tweet, tabelogUrl, shopName);
+	public Taglog(String tag, String tweet, Long tweetId) {
+		this(null, tag, tweet, tweetId);
 	}
 	
-	public Taglog(Long id, String tag, String location, String genre, String tweet, String tabelogUrl, String shopName) {
-		this.id = id;
+	public Taglog(Long taglogId, String tag, String tweet, Long tweetId) {
+		this.taglogId = taglogId;
 		this.tag = tag;
-		this.location = location;
-		this.genre = genre;
 		this.tweet = tweet;
-		this.tabelogUrl = tabelogUrl;
-		this.shopName = shopName;
+		this.tweetId = tweetId;
 	}
 
-	public Long getId() {
-		return id;
+
+	public Long getTaglogId() {
+		return taglogId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setTaglogId(Long taglogId) {
+		this.taglogId = taglogId;
 	}
 
 	public String getTag() {
@@ -53,14 +45,6 @@ public class Taglog {
 		this.tag = tag;
 	}
 
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
 	public String getTweet() {
 		return tweet;
 	}
@@ -69,30 +53,12 @@ public class Taglog {
 		this.tweet = tweet;
 	}
 
-	public String getGenre() {
-		return genre;
+	public Long getTweetId() {
+		return tweetId;
 	}
 
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setTweetId(Long tweetId) {
+		this.tweetId = tweetId;
 	}
-
-	public String getTabelogUrl() {
-		return tabelogUrl;
-	}
-
-	public void setTabelogUrl(String tabelogUrl) {
-		this.tabelogUrl = tabelogUrl;
-	}
-
-	public String getShopName() {
-		return shopName;
-	}
-
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
-	}
-
-	
 	
 }

@@ -26,14 +26,11 @@ public class JdbcTaglogRepository implements TaglogRepository{
 
 	public Taglog sava(Taglog taglog) {
 		jdbc.update(
-			"insert into Taglog(tag, location, genre, tweet, tabelogUrl, shopName)" +
-			"values (?, ?, ?, ?, ?, ?)",
+			"insert into Taglog(tag,  tweet, tweetId)" +
+			"values (?, ?, ?)",
 			taglog.getTag(),
-			taglog.getLocation(),
-			taglog.getGenre(),
-			taglog.getTweet(),	
-			taglog.getTabelogUrl(),
-			taglog.getShopName()
+			taglog.getTweet(),
+			taglog.getTweetId()
 		);
 		return taglog;
 	}
@@ -47,7 +44,7 @@ public class JdbcTaglogRepository implements TaglogRepository{
 			tag);
 		*/
 		return jdbc.queryForList(
-			"select id, tag, location, genre, tweet, tabelogUrl, shopName "
+			"select taglogId, tag, tweet, tweetId "
 			+ "from taglog where tag=?", tag);
 	}
 
@@ -60,13 +57,10 @@ public class JdbcTaglogRepository implements TaglogRepository{
 	private static class TaglogRowMapper implements RowMapper<Taglog> {
 		public Taglog mapRow(ResultSet rs, int rowNum) throws SQLException {
 			return new Taglog(
-				rs.getLong("id"),
+				rs.getLong("taglogId"),
 				rs.getString("tag"),
-				rs.getString("location"),
-				rs.getString("genre"),
 				rs.getString("tweet"),
-				rs.getString("tabelogUrl"),
-				rs.getString("shopName")
+				rs.getLong("tweetId")
 			);
 		}
 	}
