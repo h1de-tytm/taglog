@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+
 <%@ page session="false" %>
 <html>
   <head>
@@ -64,7 +65,31 @@
              <div class="jumbotron wow fadeIn" data-wow-delay="0.2s">
                  <c:forEach items="${taglogList}" var="taglog">
   					${taglog.tweet}
+  					<div class="table-responsive">
+					<table class="table table-striped">
+					  <thead>
+					    <tr>
+					      <th>店名</th>
+					      <th>最寄り駅</th>
+					      <th>ジャンル</th>
+					      <th>食べログURL</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+	  					<c:forEach items="${taglog.shopList}" var="shop">
+	  					　　　<tr>
+	  						  <td>${shop.shopName} </td>
+	  						  <td><a href="../location/${shop.location}">${shop.location}</a></td>
+	  						  <td><a href="../genre/${shop.genre}">${shop.genre}</a> </td>
+	  						  <td><a href="${shop.tabelogUrl}" target="_blank">${shop.tabelogUrl}</a> </td>
+	  						</tr>
+	  					</c:forEach>
+					  </tbody>
+					</table>
+					</div>
   				</c:forEach>
+  				 
+  				<%! //List taglogList = (ArrayList)session.getAttribute("taglog"); %>
              </div>
            </div>
          </div>

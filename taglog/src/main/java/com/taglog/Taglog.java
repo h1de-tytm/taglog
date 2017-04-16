@@ -1,5 +1,7 @@
 package com.taglog;
 
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 
 public class Taglog {
@@ -13,6 +15,8 @@ public class Taglog {
 	
 	@NotNull
 	private Long tweetId;
+	
+	private List<Shop> shopList;
 	
 	
 	public Taglog() {}
@@ -59,6 +63,14 @@ public class Taglog {
 
 	public void setTweetId(Long tweetId) {
 		this.tweetId = tweetId;
+	}
+
+	public List<Shop> getShopList() {
+		return shopList;
+	}
+
+	public void setShopList(List<Shop> shopList) {
+		this.shopList = shopList;
 	}
 	
 }

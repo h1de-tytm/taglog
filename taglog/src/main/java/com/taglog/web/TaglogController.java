@@ -1,7 +1,5 @@
 package com.taglog.web;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,13 +11,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.taglog.Shop;
 import com.taglog.TagMapping;
 import com.taglog.Taglog;
+import com.taglog.data.ShopRepository;
 import com.taglog.data.TaglogRepository;
 
 @Controller
 public class TaglogController {
 	private TaglogRepository taglogRepository;
+	private ShopRepository shopRepository;
 
 	@RequestMapping(value="/taglog", method=RequestMethod.GET)
 	public String returnHome() {
@@ -28,8 +29,9 @@ public class TaglogController {
 	}
 	
 	@Autowired
-	public TaglogController(TaglogRepository taglogRepository) {
+	public TaglogController(TaglogRepository taglogRepository, ShopRepository shopRepository) {
 		this.taglogRepository = taglogRepository;
+		this.shopRepository = shopRepository;
 	}
 	
 	@RequestMapping(value="/tag/{tag}", method=RequestMethod.GET)
@@ -69,10 +71,30 @@ public class TaglogController {
 		}
 		
 		
+		for (Taglog taglog : nonDuplicatedTaglogList) {
+			Long tweetId = taglog.getTweetId();
+			List<Map<String, Object>> shopMapList = shopRepository.findByTweetId(tweetId);
+			List<Shop> shopList = new ArrayList<Shop>();
+			for (Map<String, Object> shopMap : shopMapList) {
+				Shop shop = new Shop();
+				shop.setShopId((Long)shopMap.get("shopId"));
+				shop.setTweetId((Long)shopMap.get("tweetId"));
+				shop.setShopName((String)shopMap.get("shopName"));
+				shop.setLocation((String)shopMap.get("location"));
+				shop.setGenre((String)shopMap.get("genre"));
+				shop.setTabelogUrl((String)shopMap.get("tabelogUrl"));
+				shopList.add(shop);
+			}
+			taglog.setShopList(shopList);
+			
+		}
+		
 		TagMapping tagMapping = new TagMapping();
 		String tagName = tagMapping.getTagName(tag);
 		model.addAttribute("tagName", tagName);
 		model.addAttribute("taglogList", nonDuplicatedTaglogList);
-		return "taglog";
+		
+		
+		return "tag";
 	}
 }

@@ -37,12 +37,6 @@ public class JdbcTaglogRepository implements TaglogRepository{
 
 	@Override
 	public List<Map<String, Object>> findByTag(String tag) {
-		/*
-		return jdbc.queryForObject
-			("select id, tag, location, genre, tweet, tabelogUrl, shopName from taglog where tag=?", 
-			new TaglogRowMapper(),
-			tag);
-		*/
 		return jdbc.queryForList(
 			"select taglogId, tag, tweet, tweetId "
 			+ "from taglog where tag=?", tag);
