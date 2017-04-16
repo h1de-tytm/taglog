@@ -53,7 +53,7 @@
         <h2 class="h2-responsive wow bounceIn">タグからお店を選ぶ</h2>
     </div>
 	<div class="list-group">
-	    <a href="../tag/kiyolog" class="list-group-item disabled">きよログ</a>
+	    <a href="../tag/きよログ" class="list-group-item">きよログ</a>
 	    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
 	    <a href="#" class="list-group-item">Morbi leo risus</a>
 	    <a href="#" class="list-group-item">Porta ac consectetur ac</a>

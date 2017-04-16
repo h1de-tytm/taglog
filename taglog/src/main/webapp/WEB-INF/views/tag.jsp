@@ -61,7 +61,7 @@
          <div class="row">
          　　　　　　<div class="col-md-12 wow fadeIn">
         
-         	　<h4>#${tagName}のお店</h4>
+         	　<h4><a href="../tag/${tagName}">#${tagName}</a>のお店</h4>
              <div class="jumbotron wow fadeIn" data-wow-delay="0.2s">
                  <c:forEach items="${taglogList}" var="taglog">
   					${taglog.tweet}
@@ -89,7 +89,6 @@
 					</div>
   				</c:forEach>
   				 
-  				<%! //List taglogList = (ArrayList)session.getAttribute("taglog"); %>
              </div>
            </div>
          </div>

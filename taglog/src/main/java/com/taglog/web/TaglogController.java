@@ -89,9 +89,12 @@ public class TaglogController {
 			
 		}
 		
-		TagMapping tagMapping = new TagMapping();
-		String tagName = tagMapping.getTagName(tag);
-		model.addAttribute("tagName", tagName);
+		/*if we can't use Japanese character, use Mappng Class.
+		//TagMapping tagMapping = new TagMapping();
+		//String tagName = tagMapping.getTagName(tag);
+		*/
+		 
+		model.addAttribute("tagName", tag);
 		model.addAttribute("taglogList", nonDuplicatedTaglogList);
 		
 		
