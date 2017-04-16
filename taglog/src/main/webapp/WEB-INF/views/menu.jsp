@@ -64,7 +64,7 @@
         <h2 class="h2-responsive wow bounceIn">最寄り駅からお店を選ぶ</h2>
     </div>
 	<div class="list-group">
-	    <a href="../location/roppongi" class="list-group-item disabled">六本木</a>
+	    <a href="../location/roppongi" class="list-group-item">六本木</a>
 	    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
 	    <a href="#" class="list-group-item">Morbi leo risus</a>
 	    <a href="#" class="list-group-item">Porta ac consectetur ac</a>

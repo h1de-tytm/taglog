@@ -72,7 +72,7 @@
 					      <th>店名</th>
 					      <th>最寄り駅</th>
 					      <th>ジャンル</th>
-					      <th>食べログURL</th>
+					      <th>食べログ</th>
 					    </tr>
 					  </thead>
 					  <tbody>
@@ -81,7 +81,8 @@
 	  						  <td>${shop.shopName} </td>
 	  						  <td><a href="../location/${shop.location}">${shop.location}</a></td>
 	  						  <td><a href="../genre/${shop.genre}">${shop.genre}</a> </td>
-	  						  <td><a href="${shop.tabelogUrl}" target="_blank">${shop.tabelogUrl}</a> </td>
+	  						  <!--  <td><a href="${shop.tabelogUrl}" target="_blank">${shop.tabelogUrl}</a> </td>-->
+	  						  <td><a href="${shop.tabelogUrl}" target="_blank"><img src="<c:url value="/resources/img/tabelog.jpg" />" alt="${shop.tabelogUrl}" width="35" height="35"></a></td>
 	  						</tr>
 	  					</c:forEach>
 					  </tbody>
