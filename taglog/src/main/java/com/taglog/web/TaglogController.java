@@ -53,24 +53,10 @@ public class TaglogController {
 		}
 				
 		//create tweetId list to eliminate duplicate.
-		List<Long> tweetIdList = new ArrayList<Long>();
-		List<Taglog> nonDuplicatedTaglogList = new ArrayList<Taglog>();
-		for (Taglog taglog : taglogList) {
-			Long tweetId = taglog.getTweetId();
-			boolean isDuplicated = false; // true: duplicate, false: not duplicate
-			for (Long exeistedTweetId : tweetIdList) {
-				if (tweetId.equals(exeistedTweetId)) {
-					isDuplicated = true;
-				}
-			}
-			if (!isDuplicated) {
-				tweetIdList.add(tweetId);
-				nonDuplicatedTaglogList.add(taglog);
-			}
-			
-		}
+		List<Taglog> nonDuplicatedTaglogList = getNonDuplicatedTaglogList(taglogList);		
 		
-		
+		List<Taglog> nonDuplicatedTaglogListWithShopList = getTaglogListWithShopList(nonDuplicatedTaglogList);
+		/*
 		for (Taglog taglog : nonDuplicatedTaglogList) {
 			Long tweetId = taglog.getTweetId();
 			List<Map<String, Object>> shopMapList = shopRepository.findByTweetId(tweetId);
@@ -88,6 +74,7 @@ public class TaglogController {
 			taglog.setShopList(shopList);
 			
 		}
+		*/
 		
 		/*if we can't use Japanese character, use Mappng Class.
 		//TagMapping tagMapping = new TagMapping();
@@ -95,9 +82,89 @@ public class TaglogController {
 		*/
 		 
 		model.addAttribute("tagName", tag);
-		model.addAttribute("taglogList", nonDuplicatedTaglogList);
+		model.addAttribute("taglogList", nonDuplicatedTaglogListWithShopList);
 		
 		
 		return "tag";
 	}
+	
+	@RequestMapping(value="/location/{location}", method=RequestMethod.GET)
+	public String showTaglogLocation(@PathVariable String location, Model model) {
+		System.out.println("/location/{location}" + location + "is called");
+		List<Map<String, Object>> shopMapList = shopRepository.findByLocation(location);
+		
+		List<Shop> shopList = new ArrayList<Shop>();
+		for (Map<String, Object> shopMap : shopMapList) {
+			Shop shop = new Shop();
+			shop.setGenre((String)shopMap.get("genre"));
+			shop.setLocation((String)shopMap.get("shop"));
+			shop.setShopId((Long)shopMap.get("shopId"));
+			shop.setShopName((String)shopMap.get("shopName"));
+			shop.setTabelogUrl((String)shopMap.get("tabelogUrl"));
+			shop.setTweetId((Long)shopMap.get("tweetId"));
+			shopList.add(shop);
+		}
+		
+		List<Taglog> taglogList = new ArrayList<Taglog>();
+		for (Shop shop : shopList) {
+			List<Map<String, Object>> taglogMapList = taglogRepository.findByTweetId(shop.getTweetId());
+			for (Map<String, Object> taglogMap : taglogMapList) {
+				Taglog taglog = new Taglog();
+				taglog.setTaglogId((Long)taglogMap.get("taglogId"));
+				taglog.setTag((String)taglogMap.get("tag"));
+				taglog.setTweet((String)taglogMap.get("tweet"));
+				taglog.setTweetId((Long)taglogMap.get("tweetId"));
+				taglogList.add(taglog);
+			}			
+		}
+		
+		List<Taglog> nonDuplicatedTaglogList = getNonDuplicatedTaglogList(taglogList);		
+		List<Taglog> nonDuplicatedTaglogListWithShopList = getTaglogListWithShopList(nonDuplicatedTaglogList);
+		model.addAttribute("locationName", location);
+		model.addAttribute("taglogList", nonDuplicatedTaglogListWithShopList);
+		
+		
+		return "location";
+	}
+	
+	private List<Taglog> getNonDuplicatedTaglogList(List<Taglog> taglogList) {
+		List<Long> tweetIdList = new ArrayList<Long>();
+		List<Taglog> nonDuplicatedTaglogList = new ArrayList<Taglog>();
+		for (Taglog taglog : taglogList) {
+			Long tweetId = taglog.getTweetId();
+			boolean isDuplicated = false; // true: duplicate, false: not duplicate
+			for (Long exeistedTweetId : tweetIdList) {
+				if (tweetId.equals(exeistedTweetId)) {
+					isDuplicated = true;
+				}
+			}
+			if (!isDuplicated) {
+				tweetIdList.add(tweetId);
+				nonDuplicatedTaglogList.add(taglog);
+			}
+			
+		}
+		return nonDuplicatedTaglogList;
+	}
+	
+	private List<Taglog> getTaglogListWithShopList(List<Taglog> taglogList) {
+		for (Taglog taglog : taglogList) {
+			Long tweetId = taglog.getTweetId();
+			List<Map<String, Object>> shopMapList = shopRepository.findByTweetId(tweetId);
+			List<Shop> shopList = new ArrayList<Shop>();
+			for (Map<String, Object> shopMap : shopMapList) {
+				Shop shop = new Shop();
+				shop.setShopId((Long)shopMap.get("shopId"));
+				shop.setTweetId((Long)shopMap.get("tweetId"));
+				shop.setShopName((String)shopMap.get("shopName"));
+				shop.setLocation((String)shopMap.get("location"));
+				shop.setGenre((String)shopMap.get("genre"));
+				shop.setTabelogUrl((String)shopMap.get("tabelogUrl"));
+				shopList.add(shop);
+			}
+			taglog.setShopList(shopList);
+		}
+		return taglogList;
+	}
+	
 }

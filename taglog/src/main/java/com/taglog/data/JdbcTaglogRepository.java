@@ -24,16 +24,6 @@ public class JdbcTaglogRepository implements TaglogRepository{
 		this.jdbc = jdbc;
 	}
 
-	public Taglog sava(Taglog taglog) {
-		jdbc.update(
-			"insert into Taglog(tag,  tweet, tweetId)" +
-			"values (?, ?, ?)",
-			taglog.getTag(),
-			taglog.getTweet(),
-			taglog.getTweetId()
-		);
-		return taglog;
-	}
 
 	@Override
 	public List<Map<String, Object>> findByTag(String tag) {
@@ -42,12 +32,7 @@ public class JdbcTaglogRepository implements TaglogRepository{
 			+ "from taglog where tag=?", tag);
 	}
 
-	@Override
-	public Taglog findByLocation(String location) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+
 	private static class TaglogRowMapper implements RowMapper<Taglog> {
 		public Taglog mapRow(ResultSet rs, int rowNum) throws SQLException {
 			return new Taglog(
@@ -60,11 +45,18 @@ public class JdbcTaglogRepository implements TaglogRepository{
 	}
 	
 	private static class TaglogResultSetExtractor implements ResultSetExtractor<Taglog> {
-
 		public Taglog extractData(ResultSet arg0) throws SQLException, DataAccessException {
 			// TODO Auto-generated method stub
 			return null;
 		}
+		
+	}
+
+	@Override
+	public List<Map<String, Object>> findByTweetId(Long tweetId) {
+		return jdbc.queryForList(
+				"select taglogId, tag, tweet, tweetId "
+				+ "from taglog where tweetId=?", tweetId);
 		
 	}
 
