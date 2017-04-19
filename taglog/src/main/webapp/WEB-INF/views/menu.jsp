@@ -7,7 +7,8 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    
+    <link rel="shortcut icon" 
+          href="<c:url value="/resources/favicon/favicon.ico" />" >    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -114,7 +115,7 @@
 </br>
 </div>
 <!--Footer-->
-<footer class="page-footer blue center-on-small-only">
+<footer class="page-footer warning-color-dark center-on-small-only">
 
     <!--Footer Links-->
     <div class="container-fluid">
@@ -122,19 +123,20 @@
 
             <!--First column-->
             <div class="col-md-6">
-                <h5 class="title">Footer Content</h5>
-                <p>Here you can use rows and columns here to organize your footer content.</p>
+                <h5 class="title">ご連絡</h5>
+                <p>このサイトは<a href="https://twitter.com/cook_hideyoshi" target="_blank">@cook_hideyoshi</a>によって運営されています。
+                ツイートの掲載に問題がある場合や、新規に検索用タグを追加したい場合は、<a href="https://twitter.com/cook_hideyoshi" target="_blank">@cook_hideyoshi</a>までご連絡ください。
+                </p>
             </div>
             <!--/.First column-->
 
             <!--Second column-->
             <div class="col-md-6">
-                <h5 class="title">Links</h5>
+                <h5 class="title">リンク</h5>
                 <ul>
-                    <li><a href="#!">Link 1</a></li>
-                    <li><a href="#!">Link 2</a></li>
-                    <li><a href="#!">Link 3</a></li>
-                    <li><a href="#!">Link 4</a></li>
+                    <li>作成者のブログ:<a href="http://oreno-yuigon.hatenablog.com/" target="_blank">俺の遺言を聴いてほしい</a></li>
+                    <li>Github:<a href="https://github.com/h1de-tytm/taglog" target="_blank">taglog</a></li>
+                    <li>Special Thanks:<a href="https://twitter.com/KiyotoDrives" target="_blank">@KiyotoDrives</a></li>
                 </ul>
             </div>
             <!--/.Second column-->
@@ -142,11 +144,10 @@
     </div>
     <!--/.Footer Links-->
 
-    <!--Copyright-->
+    <!--Copyright　-->
     <div class="footer-copyright">
         <div class="container-fluid">
-            © 2015 Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
-
+            © 2017 Copyright: <a href="https://twitter.com/cook_hideyoshi" target="_blank">@cook_hideyoshi </a>
         </div>
     </div>
     <!--/.Copyright-->

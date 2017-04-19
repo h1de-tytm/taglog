@@ -54,7 +54,6 @@ public class MenuController {
 		for (Map<String, Object> genreMap : genreMapList) {
 			Long count = (Long)genreMap.get("recordCount");
 			String genre = (String)genreMap.get("genre");
-			System.out.println("count:" + count + "  genre:" + genre);
 			genreList.add(genre);
 		}
 		
