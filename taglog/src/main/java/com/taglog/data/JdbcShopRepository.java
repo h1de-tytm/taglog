@@ -52,4 +52,21 @@ public class JdbcShopRepository implements ShopRepository {
 			);
 	}
 
+	@Override
+	public List<Map<String, Object>> orderByLocationCount() {
+		return jdbc.queryForList(
+				"select count(*) as recordCount, location " 
+				+ "from shop group by location order by recordCount desc"
+			);
+	}
+
+	@Override
+	public List<Map<String, Object>> orderByGenreCount() {
+		return jdbc.queryForList(
+				"select count(*) as recordCount, genre " 
+				+ "from shop group by genre order by recordCount desc"
+			);
+	}
+
+
 }

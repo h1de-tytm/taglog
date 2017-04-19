@@ -11,4 +11,5 @@ public interface TaglogRepository {
 	
 	List<Map<String, Object>>  findByTag(String tag);
 	
+	List<Map<String, Object>> orderByTagCount();
 }

@@ -52,35 +52,13 @@ public class TaglogController {
 			
 		}
 				
-		//create tweetId list to eliminate duplicate.
-		List<Taglog> nonDuplicatedTaglogList = getNonDuplicatedTaglogList(taglogList);		
-		
+		List<Taglog> nonDuplicatedTaglogList = getNonDuplicatedTaglogList(taglogList);				
 		List<Taglog> nonDuplicatedTaglogListWithShopList = getTaglogListWithShopList(nonDuplicatedTaglogList);
-		/*
-		for (Taglog taglog : nonDuplicatedTaglogList) {
-			Long tweetId = taglog.getTweetId();
-			List<Map<String, Object>> shopMapList = shopRepository.findByTweetId(tweetId);
-			List<Shop> shopList = new ArrayList<Shop>();
-			for (Map<String, Object> shopMap : shopMapList) {
-				Shop shop = new Shop();
-				shop.setShopId((Long)shopMap.get("shopId"));
-				shop.setTweetId((Long)shopMap.get("tweetId"));
-				shop.setShopName((String)shopMap.get("shopName"));
-				shop.setLocation((String)shopMap.get("location"));
-				shop.setGenre((String)shopMap.get("genre"));
-				shop.setTabelogUrl((String)shopMap.get("tabelogUrl"));
-				shopList.add(shop);
-			}
-			taglog.setShopList(shopList);
-			
-		}
-		*/
-		
+
 		/*if we can't use Japanese character, use Mappng Class.
-		//TagMapping tagMapping = new TagMapping();
-		//String tagName = tagMapping.getTagName(tag);
-		*/
-		 
+		  TagMapping tagMapping = new TagMapping();
+		  String tagName = tagMapping.getTagName(tag);
+		*/		 
 		model.addAttribute("tagName", tag);
 		model.addAttribute("taglogList", nonDuplicatedTaglogListWithShopList);
 		
@@ -90,7 +68,7 @@ public class TaglogController {
 	
 	@RequestMapping(value="/location/{location}", method=RequestMethod.GET)
 	public String showTaglogLocation(@PathVariable String location, Model model) {
-		System.out.println("/location/{location}" + location + "is called");
+		System.out.println("/location/{" + location + "} is called");
 		List<Map<String, Object>> shopMapList = shopRepository.findByLocation(location);
 		
 		List<Shop> shopList = new ArrayList<Shop>();
@@ -125,6 +103,45 @@ public class TaglogController {
 		
 		
 		return "location";
+	}
+
+	@RequestMapping(value="/genre/{genre}", method=RequestMethod.GET)
+	public String showTaglogGenre(@PathVariable String genre, Model model) {
+		System.out.println("/genre/{" + genre + "} is called");
+		List<Map<String, Object>> shopMapList = shopRepository.findByGenre(genre);
+		
+		List<Shop> shopList = new ArrayList<Shop>();
+		for (Map<String, Object> shopMap : shopMapList) {
+			Shop shop = new Shop();
+			shop.setGenre((String)shopMap.get("genre"));
+			shop.setLocation((String)shopMap.get("shop"));
+			shop.setShopId((Long)shopMap.get("shopId"));
+			shop.setShopName((String)shopMap.get("shopName"));
+			shop.setTabelogUrl((String)shopMap.get("tabelogUrl"));
+			shop.setTweetId((Long)shopMap.get("tweetId"));
+			shopList.add(shop);
+		}
+		
+		List<Taglog> taglogList = new ArrayList<Taglog>();
+		for (Shop shop : shopList) {
+			List<Map<String, Object>> taglogMapList = taglogRepository.findByTweetId(shop.getTweetId());
+			for (Map<String, Object> taglogMap : taglogMapList) {
+				Taglog taglog = new Taglog();
+				taglog.setTaglogId((Long)taglogMap.get("taglogId"));
+				taglog.setTag((String)taglogMap.get("tag"));
+				taglog.setTweet((String)taglogMap.get("tweet"));
+				taglog.setTweetId((Long)taglogMap.get("tweetId"));
+				taglogList.add(taglog);
+			}			
+		}
+		
+		List<Taglog> nonDuplicatedTaglogList = getNonDuplicatedTaglogList(taglogList);		
+		List<Taglog> nonDuplicatedTaglogListWithShopList = getTaglogListWithShopList(nonDuplicatedTaglogList);
+		model.addAttribute("genreName", genre);
+		model.addAttribute("taglogList", nonDuplicatedTaglogListWithShopList);
+		
+		
+		return "genre";
 	}
 	
 	private List<Taglog> getNonDuplicatedTaglogList(List<Taglog> taglogList) {

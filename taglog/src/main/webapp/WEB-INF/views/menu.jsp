@@ -59,6 +59,12 @@
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">タグからお店を選ぶ</h2>
     </div>
+    <div class="list-group">
+    	<c:forEach items="${tagList}" var="tag">
+			<a href="../tag/${tag}" class="list-group-item">${tag}</a>
+		</c:forEach>    
+    </div>
+    <!--  
 	<div class="list-group">
 	    <a href="../tag/きよログ" class="list-group-item">きよログ</a>
 	    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
@@ -66,11 +72,17 @@
 	    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
 	    <a href="#" class="list-group-item">Vestibulum at eros</a>
 	</div>
+	-->
 	
-	<!-- TODO: 数が多い順に並べる -->
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">最寄り駅からお店を選ぶ</h2>
     </div>
+    <div class="list-group">
+    	<c:forEach items="${locationList}" var="location">
+			<a href="../location/${location}" class="list-group-item">${location}</a>
+		</c:forEach>
+    </div> 
+    <!--  
 	<div class="list-group">
 	    <a href="../location/六本木" class="list-group-item">六本木</a>
 	    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
@@ -78,21 +90,68 @@
 	    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
 	    <a href="#" class="list-group-item">Vestibulum at eros</a>
 	</div> 
-	
+	-->
 	<!-- TODO: 数が多い順に並べる -->
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">ジャンルからお店を選ぶ</h2>
     </div>
+    <div class="list-group">
+		<c:forEach items="${genreList}" var="genre">
+			<a href="../genre/${genre}" class="list-group-item">${genre}</a>
+		</c:forEach>
+	</div> 
+    <!--  
 	<div class="list-group">
-	    <a href="../location/ウニ" class="list-group-item">ウニ</a>
+	    <a href="../genre/ウニ" class="list-group-item">ウニ</a>
 	    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
 	    <a href="#" class="list-group-item">Morbi leo risus</a>
 	    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
 	    <a href="#" class="list-group-item">Vestibulum at eros</a>
 	</div>     
+	 -->   
+</br>
+</br>
+</br>
 </div>
+<!--Footer-->
+<footer class="page-footer blue center-on-small-only">
 
+    <!--Footer Links-->
+    <div class="container-fluid">
+        <div class="row">
 
+            <!--First column-->
+            <div class="col-md-6">
+                <h5 class="title">Footer Content</h5>
+                <p>Here you can use rows and columns here to organize your footer content.</p>
+            </div>
+            <!--/.First column-->
 
+            <!--Second column-->
+            <div class="col-md-6">
+                <h5 class="title">Links</h5>
+                <ul>
+                    <li><a href="#!">Link 1</a></li>
+                    <li><a href="#!">Link 2</a></li>
+                    <li><a href="#!">Link 3</a></li>
+                    <li><a href="#!">Link 4</a></li>
+                </ul>
+            </div>
+            <!--/.Second column-->
+        </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <!--Copyright-->
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            © 2015 Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
+
+        </div>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
 </body>
 </html>

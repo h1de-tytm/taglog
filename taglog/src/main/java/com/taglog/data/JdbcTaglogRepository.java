@@ -59,5 +59,12 @@ public class JdbcTaglogRepository implements TaglogRepository{
 				+ "from taglog where tweetId=?", tweetId);
 		
 	}
-
+	
+	@Override
+	public List<Map<String, Object>> orderByTagCount() {
+		return jdbc.queryForList(
+				"select count(*) as recordCount, tag " 
+				+ "from taglog group by tag order by recordCount desc"
+			);
+	}
 }

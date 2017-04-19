@@ -15,5 +15,8 @@ public interface ShopRepository {
 	
 	List<Map<String, Object>> findByGenre(String genre);
 	
+	List<Map<String, Object>> orderByLocationCount();
+	
+	List<Map<String, Object>> orderByGenreCount();
 	
 }
