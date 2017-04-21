@@ -74,15 +74,7 @@
 			<a href="../tag/${tag}" class="list-group-item">${tag}</a>
 		</c:forEach>    
     </div>
-    <!--  
-	<div class="list-group">
-	    <a href="../tag/きよログ" class="list-group-item">きよログ</a>
-	    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-	    <a href="#" class="list-group-item">Morbi leo risus</a>
-	    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-	    <a href="#" class="list-group-item">Vestibulum at eros</a>
-	</div>
-	-->
+
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">ジャンルからお店を選ぶ</h2>
     </div>
@@ -99,25 +91,7 @@
     	<c:forEach items="${locationList}" var="location">
 			<a href="../location/${location}" class="list-group-item">${location}</a>
 		</c:forEach>
-    </div> 
-    <!--  
-	<div class="list-group">
-	    <a href="../location/六本木" class="list-group-item">六本木</a>
-	    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-	    <a href="#" class="list-group-item">Morbi leo risus</a>
-	    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-	    <a href="#" class="list-group-item">Vestibulum at eros</a>
-	</div> 
-	-->
-    <!--  
-	<div class="list-group">
-	    <a href="../genre/ウニ" class="list-group-item">ウニ</a>
-	    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-	    <a href="#" class="list-group-item">Morbi leo risus</a>
-	    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-	    <a href="#" class="list-group-item">Vestibulum at eros</a>
-	</div>     
-	 -->   
+    </div>  
 </br>
 </br>
 </br>
