@@ -28,7 +28,16 @@
 
 	<title>タグログ - ツイッターで話題のお店が探せるグルメサイト</title>
 	
-	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38971369-13', 'auto');
+  ga('send', 'pageview');
+
+　　</script>
 </head>
 <body>
 <nav class="navbar navbar-toggleable-md navbar-dark warning-color-dark">
@@ -74,7 +83,15 @@
 	    <a href="#" class="list-group-item">Vestibulum at eros</a>
 	</div>
 	-->
-	
+    <div class="divider-new">
+        <h2 class="h2-responsive wow bounceIn">ジャンルからお店を選ぶ</h2>
+    </div>
+    <div class="list-group">
+		<c:forEach items="${genreList}" var="genre">
+			<a href="../genre/${genre}" class="list-group-item">${genre}</a>
+		</c:forEach>
+	</div> 
+		
     <div class="divider-new">
         <h2 class="h2-responsive wow bounceIn">最寄り駅からお店を選ぶ</h2>
     </div>
@@ -92,15 +109,6 @@
 	    <a href="#" class="list-group-item">Vestibulum at eros</a>
 	</div> 
 	-->
-	<!-- TODO: 数が多い順に並べる -->
-    <div class="divider-new">
-        <h2 class="h2-responsive wow bounceIn">ジャンルからお店を選ぶ</h2>
-    </div>
-    <div class="list-group">
-		<c:forEach items="${genreList}" var="genre">
-			<a href="../genre/${genre}" class="list-group-item">${genre}</a>
-		</c:forEach>
-	</div> 
     <!--  
 	<div class="list-group">
 	    <a href="../genre/ウニ" class="list-group-item">ウニ</a>
