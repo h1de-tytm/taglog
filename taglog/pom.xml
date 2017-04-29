@@ -38,10 +38,16 @@
 	      <groupId>com.h2database</groupId>
 	      <artifactId>h2</artifactId>
 	    </dependency>
+	    <!--  
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-social-twitter</artifactId>
 		</dependency>
+		-->
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-twitter</artifactId>
+        </dependency>
 		<dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
@@ -61,6 +67,22 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+		    <groupId>org.jsoup</groupId>
+		    <artifactId>jsoup</artifactId>
+		    <version>1.10.2</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.github.scribejava</groupId>
+		  <artifactId>scribejava-apis</artifactId>
+		  <version>2.0.1</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.json</groupId>
+		  <artifactId>json</artifactId>
+		  <version>20151123</version>
 		</dependency>
 
 		<dependency>
