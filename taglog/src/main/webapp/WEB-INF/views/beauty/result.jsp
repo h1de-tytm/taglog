@@ -27,7 +27,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/mdb.min.js" />"></script>
 
-    <title>タグログ - ツイッターで話題のお店が探せるグルメサイト</title>
+    <title>タグログ ビューティ - ツイッターで話題の美容情報が探せるサイト</title>
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -40,26 +40,27 @@
 　　</script>
   </head>
   <body>
-<nav class="navbar navbar-toggleable-md navbar-dark warning-color-dark">
+<nav class="navbar navbar-toggleable-md navbar-dark default-color">
     <div class="container">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="../">
-            <strong>タグログ</strong>
+        <a class="navbar-brand" href="../../beauty">
+            <strong>タグログ ビューティ</strong>
         </a>
         <div class="collapse navbar-collapse" id="navbarNav1">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="../">グルメ<!--<span class="sr-only">../(current)</span>--></a>
-                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../beauty">美容<!--<span class="sr-only">../(current)</span>--></a>
+                    <a class="nav-link" href="../">タグログ <!--<span class="sr-only">../(current)</span>--></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../../beauty">タグログ ビューティ<!--<span class="sr-only">../(current)</span>--></a>
                 </li>
             </ul>
          </div>
      </div>
- </nav>    
+ </nav>
+ 
   <!--Main layout-->
   <main>
   	<div class="container-fluid">
@@ -69,33 +70,10 @@
          <div class="row">
          　　　　　　<div class="col-md-12 wow fadeIn">
         
-         	　<h4><a href="../location/${locationName}">${locationName}</a>のお店</h4>
+         	　<h4>「${keyword}」が含まれるツイート</h4>
              <div class="jumbotron wow fadeIn" data-wow-delay="0.2s">
-                 <c:forEach items="${taglogList}" var="taglog">
-  					${taglog.tweet}
-  					<div class="table-responsive">
-					<table class="table table-striped">
-					  <thead>
-					    <tr>
-					      <th>店名</th>
-					      <th>最寄り駅</th>
-					      <th>ジャンル</th>
-					      <th>食べログ</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-	  					<c:forEach items="${taglog.shopList}" var="shop">
-	  					　　　<tr>
-	  						  <td>${shop.shopName} </td>
-	  						  <td><a href="../location/${shop.location}">${shop.location}</a></td>
-	  						  <td><a href="../genre/${shop.genre}">${shop.genre}</a> </td>
-	  						  <!--  <td><a href="${shop.tabelogUrl}" target="_blank">${shop.tabelogUrl}</a> </td>-->
-	  						  <td><a href="${shop.tabelogUrl}" target="_blank"><img src="<c:url value="/resources/img/tabelog.jpg" />" alt="${shop.tabelogUrl}" width="35" height="35"></a></td>
-	  						</tr>
-	  					</c:forEach>
-					  </tbody>
-					</table>
-					</div>
+                 <c:forEach items="${beautyTweetList}" var="beautyTweet">
+  					${beautyTweet.tweet}
   				</c:forEach>
   				 
              </div>
